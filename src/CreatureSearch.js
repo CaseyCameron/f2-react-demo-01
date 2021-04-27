@@ -17,8 +17,13 @@ export default class CreatureSearch extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    //this.props.onSearch(this.state);
-    console.log('hello');
+    this.props.onSearch(this.state);
+  }
+
+  componentDidUpdate(prevProp, prevState){
+    if (prevState !== this.state) {
+      this.props.onSearch(this.state);
+    }
   }
 
   render() {
@@ -31,7 +36,7 @@ export default class CreatureSearch extends Component {
 
         <select name="sortField" value={sortField} onChange={this.handleSearchChange}>
           <option value="">all</option>
-          <option value="name">by name</option>
+          <option value="title">by name</option>
           <option value="horns">by horns</option>
         </select>
 
